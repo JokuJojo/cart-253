@@ -32,7 +32,7 @@ function draw() {
     //teh hole
     push();
     noStroke();
-    fill(0);
+    fill(holeShade);
     ellipse(140, 175, holesize);
     pop();
 }
