@@ -1,24 +1,31 @@
 /**
- * Title of Project
- * Author Name
+ * INtroducing Variables
+ * Joku Jojo
  * 
- * HOW EMBARRASSING! I HAVE NO DESCRIPTION OF MY PROJECT!
- * PLEASE REMOVE A GRADE FROM MY WORK IF IT'S GRADED!
+ * Learning Vraibles
  */
 
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
+ * create canvas
 */
 function setup() {
+    createCanvas(1000, 480);
 
 }
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
+ * circle
 */
 function draw() {
+    background(0);
 
+
+    push();
+    fill(255, 255, 0);
+    noStroke();
+    ellipse(mouseX, mouseY, 100, 100);
+    pop();
 }
