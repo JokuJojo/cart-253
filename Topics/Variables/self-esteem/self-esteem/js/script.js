@@ -13,15 +13,14 @@ let skyGreen = 180;
 let skyBlue = 250;
 
 // The sun
-
-// Colour
-let sunRed = 255;
-let sunGreen = 255;
-let sunBlue = 0;
-// Position and size
-let sunX = 500;
-let sunY = 70;
-let sunSize = 100;
+let sun = {
+    red: 255,
+    green: 255,
+    blue: 0,
+    x: 500,
+    y: 70,
+    size: 100
+};
 
 // My self-esteem
 
