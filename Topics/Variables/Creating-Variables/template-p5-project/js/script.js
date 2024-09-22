@@ -7,16 +7,23 @@
 "use strict";
 
 /**
- * OH LOOK I DIDN'T DESCRIBE SETUP!!
-*/
+create the canvas*/
 function setup() {
-
+    createCanvas(480, 480);
 }
 
 
 /**
- * OOPS I DIDN'T DESCRIBE WHAT MY DRAW DOES!
-*/
+draws a hole in a peice of cheese*/
 function draw() {
 
+    // the cheese
+    background(255, 255, 0);
+
+    //teh hole
+    push();
+    noStroke();
+    fill(0);
+    ellipse(140, 175, 180);
+    pop();
 }
