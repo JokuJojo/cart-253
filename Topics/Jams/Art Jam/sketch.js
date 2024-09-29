@@ -4,13 +4,22 @@
 
 //wall
 function setup() {
-  createCanvas(900, 1000);
+  createCanvas(900, 1100);
+
+  //Tail grab
+  startX = 530;
+  startY = 700;
 
 }
 
 function draw() {
   background("Gold");
+  textSize(40)
+  text("Do not pull kitty's tail. It's very rude.", 150, 100);
+ 
 
+
+  push();
   //window
   stroke("white");
   strokeWeight(10);
@@ -41,21 +50,17 @@ function draw() {
   stroke("black");
   strokeWeight(14);
   line(430, 420, 430, 440)
-  line(475, 420, 475, 440)
+  line(475, 420, 475, 440)  
+
+  //tail grab
+  controlX = mouseX; 
+  controlY = mouseY; 
 
   //tail
-    // Rotate around the y-axis.
-    rotateY(frameCount * 0.01);
-
-    // Draw a line.
-    line(200, 200, 200, 230, 220, -210);
+  stroke("black");
+  strokeWeight(22);
+  noFill();
+  bezier(startX, startY, 530, 650, 500, 850, controlX, controlY);
   
-    // Draw the center sphere.
-    sphere(10);
-  
-    // Translate to the second point.
-    translate(30, 20, -10);
-  
-    // Draw the bottom-right sphere.
-    sphere(10);
+  pop();
 }
