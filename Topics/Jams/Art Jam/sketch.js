@@ -27,7 +27,7 @@ function setup() {
 function draw() {
   background("Gold");
   textSize(40)
-  text("Do not pull kitty's tail. It's very rude.", 150, 100);
+  text("Do not pull kitty's tail. Kitty will be mad.", 150, 100);
 
   push();
   //window
