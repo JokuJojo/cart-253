@@ -9,20 +9,9 @@ let endX = 530;
 let defaultEndY = 900;
 let defaultEndX = 530;
 
-// let startX = 530
-// let startY = 700
-// let middleTailX = 530
-// let middletailY = 650
-// let tailX = 500
-// let tailY = 850
-
 let eyes = "GreenYellow";
 let angryEyes = "Red";
 let defaultEyes = "GreenYellow";
-
-// let windowColor = "SkyBlue";
-// let apocalypseWindow = "Maroon";
-// let defaultWindow = "SkyBlue";
 
 let r = 135;
 let g = 206;
@@ -63,6 +52,7 @@ function draw() {
     r = lerp(r, apocalypseR, 0.05);
     g = lerp(g, apocalypseG, 0.05);
     b = lerp(b, apocalypseB, 0.05);
+
   }
   else {
     eyes = defaultEyes;
@@ -95,8 +85,8 @@ function draw() {
   strokeWeight(14);
   line(430, 420, 430, 440)
   line(475, 420, 475, 440)
-  //tail grab
 
+  //tail grab
   if (mouseIsPressed) {
     endX = mouseX
     endY = mouseY
