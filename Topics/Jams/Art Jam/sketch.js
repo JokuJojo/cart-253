@@ -10,27 +10,24 @@
   let defaultEndX = 530;
 
   let eyes = "GreenYellow";
-  let angryEyes = "DarkRed";
-  let deafaultEyes = "GreenYellow";
+  let angryEyes = "Red";
+  let defaultEyes = "GreenYellow";
 
   let windowColor = "SkyBlue";
   let apocalypseWindow = "Maroon";
   let defaultWindow = "SkyBlue";
 
+  let lerpAmount = 0;
 
 function setup() {
 //wall 
   createCanvas(900, 1100);
-
-
-
 }
 
 function draw() {
   background("Gold");
   textSize(40)
   text("Do not pull kitty's tail. It's very rude.", 150, 100);
- 
 
   push();
   //window
@@ -42,14 +39,17 @@ function draw() {
   line(730, 420, 190, 420);
   line(460, 150, 460, 700);
 
-  //window Apocalipse change
-  if (mouseIsPressed) {
-    windowColor = apocalypseWindow
+  // window Apocalipse and eyes change
+  if (mouseIsPressed 
+    && (mouseX < 100 || mouseX > 800 || mouseY < 100 || mouseY > 1000)) {
+    windowColor = apocalypseWindow;
+    eyes = angryEyes;
   }
-
   else {
-    windowColor = defaultWindow
+    windowColor = defaultWindow;
+    eyes = defaultEyes;
   }
+     
 
   //Kitty!!!
   noStroke();  
@@ -68,37 +68,22 @@ function draw() {
   fill(eyes);
   ellipse(430, 430, 30, 20);
   ellipse(475, 430, 30, 20);
+
   //Pupil
   stroke("black");
   strokeWeight(14);
   line(430, 420, 430, 440)
   line(475, 420, 475, 440)  
-
-  //Angry Eyes change
-  if (mouseIsPressed) {
-    eyes = angryEyes
-  }
-
-  else {
-    eyes = deafaultEyes
-  }
-
   //tail grab
 
   if (mouseIsPressed) {
     endX = mouseX
     endY = mouseY
-  
   }
-
   else {
     endX = defaultEndX
     endY = defaultEndY 
   }
-
-  //work in progress
-  // endX = lerp(endX, defaultEndX, 0.05);
-  // endY = lerp(endY, defaultEndY, 0.05);
 
   //tail
   stroke("black");
