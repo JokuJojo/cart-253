@@ -1,26 +1,43 @@
 //Don't pull on kitty's tail
 //don't pull kitty's tail or he'll gets so mad, his eyes will
-//turn red, he'll hiss and the sky will turn black
- 
+//turn red, he'll hiss and you will cause an apocalypse
+
 
 //tail grab
-  let endY = 900;
-  let endX = 530;
-  let defaultEndY = 900;
-  let defaultEndX = 530;
+let endY = 900;
+let endX = 530;
+let defaultEndY = 900;
+let defaultEndX = 530;
 
-  let eyes = "GreenYellow";
-  let angryEyes = "Red";
-  let defaultEyes = "GreenYellow";
+// let startX = 530
+// let startY = 700
+// let middleTailX = 530
+// let middletailY = 650
+// let tailX = 500
+// let tailY = 850
 
-  let windowColor = "SkyBlue";
-  let apocalypseWindow = "Maroon";
-  let defaultWindow = "SkyBlue";
+let eyes = "GreenYellow";
+let angryEyes = "Red";
+let defaultEyes = "GreenYellow";
 
-  let lerpAmount = 0;
+// let windowColor = "SkyBlue";
+// let apocalypseWindow = "Maroon";
+// let defaultWindow = "SkyBlue";
+
+let r = 135;
+let g = 206;
+let b = 235;
+
+let apocalypseR = 128
+let apocalypseG = 0
+let apocalypseB = 0
+
+let skyR = 135;
+let skyG = 206;
+let skyB = 235;
 
 function setup() {
-//wall 
+  //wall 
   createCanvas(900, 1100);
 }
 
@@ -33,26 +50,30 @@ function draw() {
   //window
   stroke("white");
   strokeWeight(10);
-  fill(windowColor);
+  fill(r, g, b);
   square(185, 150, 550)
-  
+
   line(730, 420, 190, 420);
   line(460, 150, 460, 700);
 
   // window Apocalipse and eyes change
-  if (mouseIsPressed 
-    && (mouseX < 100 || mouseX > 800 || mouseY < 100 || mouseY > 1000)) {
-    windowColor = apocalypseWindow;
+  if (mouseIsPressed
+    && (mouseX < 200 || mouseX > 830 || mouseY < 100 || mouseY > 1000)) {
     eyes = angryEyes;
+    r = lerp(r, apocalypseR, 0.05);
+    g = lerp(g, apocalypseG, 0.05);
+    b = lerp(b, apocalypseB, 0.05);
   }
   else {
-    windowColor = defaultWindow;
     eyes = defaultEyes;
+    r = lerp(r, skyR, 0.05);
+    g = lerp(g, skyG, 0.05);
+    b = lerp(b, skyB, 0.05);
   }
-     
+
 
   //Kitty!!!
-  noStroke();  
+  noStroke();
   fill("black");
 
   //Ears
@@ -73,7 +94,7 @@ function draw() {
   stroke("black");
   strokeWeight(14);
   line(430, 420, 430, 440)
-  line(475, 420, 475, 440)  
+  line(475, 420, 475, 440)
   //tail grab
 
   if (mouseIsPressed) {
@@ -81,8 +102,9 @@ function draw() {
     endY = mouseY
   }
   else {
-    endX = defaultEndX
-    endY = defaultEndY 
+
+    endX = lerp(endX, defaultEndX, 0.05);
+    endY = lerp(endY, defaultEndY, 0.05);
   }
 
   //tail
