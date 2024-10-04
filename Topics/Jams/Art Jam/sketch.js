@@ -25,6 +25,14 @@ let skyR = 135;
 let skyG = 206;
 let skyB = 235;
 
+let hell
+let isPlaying = false
+
+function preload (){
+  hell = loadSound("./evil-mouth-ensemble-78778.mp3")
+  hell.onended(hell.stop)
+}
+
 function setup() {
   //wall 
   createCanvas(900, 1100);
@@ -32,8 +40,8 @@ function setup() {
 
 function draw() {
   background("Gold");
-  textSize(40)
-  text("Do not pull kitty's tail. Kitty will be mad.", 150, 100);
+  textSize(36)
+  text("Do not pull kitty's tail. Kitty won't be happy.", 150, 100);
 
   push();
   //window
@@ -53,12 +61,20 @@ function draw() {
     g = lerp(g, apocalypseG, 0.05);
     b = lerp(b, apocalypseB, 0.05);
 
+if (!isPlaying) {
+    isPlaying = true;
+    hell.play();
+}
+
   }
   else {
     eyes = defaultEyes;
     r = lerp(r, skyR, 0.05);
     g = lerp(g, skyG, 0.05);
     b = lerp(b, skyB, 0.05);
+
+  hell.stop();
+  isPlaying = false;
   }
 
 
