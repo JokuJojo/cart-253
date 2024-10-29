@@ -69,16 +69,6 @@ const fly = {
     speed: 5
 };
  
-//How much time is left till night
-function timer() {
-    let countdown;
-    let timeRemaining = 60;
-}
-
-function updateDisplay() {
-    const minutes = math.floor(timeRemaining / 60);
-    const seconds = timeRemaining % 60;
-}
 
 /**
  * Creates the canvas and initializes the fly
@@ -96,16 +86,8 @@ function draw() {
     moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
-    drawTimer();
 }
 
-function drawTimer () {
-    push();
-    text (minutes, seconds);
-    size (10);
-    color ("black");
-    pop();
-}
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
