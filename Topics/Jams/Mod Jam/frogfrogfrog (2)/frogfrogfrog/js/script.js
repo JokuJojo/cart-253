@@ -71,7 +71,7 @@ const fly = {
  
 //How much time is left till night
 function timer() {
-    let countdown = 0;
+    let countdown;
     let timeRemaining = 60;
 }
 
@@ -80,25 +80,11 @@ function updateDisplay() {
     const seconds = timeRemaining % 60;
 }
 
-function stopCountdown() {
-    clearInterval(countdown);
-}
-
 /**
  * Creates the canvas and initializes the fly
  */
 function setup() {
     createCanvas(640, 480);
-
-    // setInterval(timer, 1000)
-    // if (timeRemaining > 0) {
-    //     timeRemaining--;
-    //     updateDisplay();
-    // } else {
-    //     clearInterval(countdown);
-    //     alert("It's sexy time!");
-    // }
-    // Give the fly its first random position
     resetFly();
 }
 
@@ -110,11 +96,12 @@ function draw() {
     moveTongue();
     drawFrog();
     checkTongueFlyOverlap();
+    drawTimer();
 }
 
 function drawTimer () {
     push();
-    text (minutes);
+    text (minutes, seconds);
     size (10);
     color ("black");
     pop();
