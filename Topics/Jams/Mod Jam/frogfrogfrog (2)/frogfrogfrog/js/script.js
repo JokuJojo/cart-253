@@ -68,7 +68,10 @@ const fly = {
     size: 10,
     speed: 5
 };
- 
+
+//Timer
+let timeDuration = 30;
+let timeStart;
 
 /**
  * Creates the canvas and initializes the fly
@@ -76,6 +79,9 @@ const fly = {
 function setup() {
     createCanvas(640, 480);
     resetFly();
+
+    // Timer 
+    timeStart = millis();   
 }
 
 function draw() {
@@ -85,7 +91,29 @@ function draw() {
     moveFrog();
     moveTongue();
     drawFrog();
-    checkTongueFlyOverlap();
+    checkTongueFlyOverlap(); 
+    //Timer
+    drawTimer();
+}
+
+//Timer display
+function drawTimer() {
+    let timeElapsed = millis() - timeStart;
+    timeElapsed = int(timeElapsed / 1000);
+    let timeLeft = timeDuration - timeElapsed;
+
+//Ending Scene
+    if (timeLeft < 0) {
+        textSize(65);
+        textFont("Brush Script MT");
+        fill("Hotpink");
+        text("It's Sexy Time!", width / 4 - 20, height / 2);
+    }
+    else {
+        textSize(30);
+        fill("white");
+        text(timeLeft, 5, 30);
+    }
 }
 
 /**
@@ -243,7 +271,7 @@ function checkTongueFlyOverlap() {
         // Reset the fly
         resetFly();
         // Frog gets fat
-        frog.body.size = frog.body.size +3;
+        frog.body.size = frog.body.size +4;
         // Bring back the tongue
         frog.tongue.state = "inbound";
     }
