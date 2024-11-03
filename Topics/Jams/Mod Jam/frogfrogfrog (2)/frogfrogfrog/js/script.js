@@ -15,6 +15,9 @@
 
 "use strict";
 
+// State
+let state = "Menu screen"; 
+
 // Our frog
 const frog = {
     // The frog's body has a position and size
@@ -59,6 +62,9 @@ const frog = {
         size:25
      }
 };
+//Timer
+let timeDuration = 30;
+let timeStart;
 
 // Our fly
 // Has a position, size, and speed of horizontal movement
@@ -69,22 +75,68 @@ const fly = {
     speed: 5
 };
 
-//Timer
-let timeDuration = 30;
-let timeStart;
+
+// images
+let smallFrogImg;
+
+function preload() {
+    smallFrogImg = loadImage('assets/images/Petite grenouille.png') 
+}
 
 /**
  * Creates the canvas and initializes the fly
- */
+*/
 function setup() {
     createCanvas(640, 480);
     resetFly();
-
+    
     // Timer 
     timeStart = millis();   
 }
 
 function draw() {
+    //State Function order
+    if (state === "Menu screen") {
+        showMenuScreen();
+    }
+    else if (state === "Part 1") {
+        cutsceneOne();
+    }
+    else if (state === "Part 2") {
+        cutsceneTwo();
+    }
+    else if (state === "Part 3") {
+        cutsceneThree();
+    }
+    else if (state === "Part 4") {
+        cutsceneFour();
+    }
+    else if (state === "Gameplay") {
+        gameplay();
+    }
+    //if over 20 flies eaten then good ending
+    else if (state === "Good Ending") { //or
+        sexyEnding();
+    }
+    //if under 20 flies eaten, then bad ending
+    else if (state === "Bad Ending") {
+        rejectionEnding();
+    }
+    else if (state === "Fin") {
+        fin();
+    }
+}
+
+ //Menu screen, click play 
+function showMenuScreen() {
+    background("#87ceeb");
+    image(smallFrogImg, -20, 160, 300, 300,);
+    text("Frog Mates");
+    
+}
+
+//Gameplay, where the frog lick da fly miam
+function drawGameplay() {
     background("#87ceeb");
     moveFly();
     drawFly();
@@ -102,7 +154,7 @@ function drawTimer() {
     timeElapsed = int(timeElapsed / 1000);
     let timeLeft = timeDuration - timeElapsed;
 
-//Ending Scene
+    //Ending Scene
     if (timeLeft < 0) {
         textSize(65);
         textFont("Brush Script MT");
