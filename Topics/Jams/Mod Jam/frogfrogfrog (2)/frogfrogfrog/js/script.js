@@ -15,8 +15,7 @@
 
 "use strict";
 
-// State
-let state = "Menu screen"; 
+
 
 // Our frog
 const frog = {
@@ -62,9 +61,6 @@ const frog = {
         size:25
      }
 };
-//Timer
-let timeDuration = 30;
-let timeStart;
 
 // Our fly
 // Has a position, size, and speed of horizontal movement
@@ -75,13 +71,50 @@ const fly = {
     speed: 5
 };
 
+//Timer
+let timeDuration = 30;
+let timeStart;
 
-// images
+// State
+let state = "Part 4"; 
+let cutsceneOneString = "Part 1";
+let cutsceneTwoString = "Part 2";
+let cutsceneThreeString = "Part 3";
+let cutsceneFourString = "Part 4";
+let gameplayString = "Gameplay";
+
+// Frog images for Cutscenes
+//Menu
 let smallFrogImg;
+//Cutscene 1
+let interestedSmallFrogImg;
+//Cutscene 2
+let singingBigFrogImg;
+let shySmallFrogImg;
+//Cutscene 3
+let yikesBigFrogImg;
+let sadSmallFrogImg;
+//Cutscene 4
+let bigFrogImg;
+let confidentSmallFrogImg;
 
 function preload() {
-    smallFrogImg = loadImage('assets/images/Petite grenouille.png') 
+    smallFrogImg = loadImage('assets/images/Petite grenouille.png');
+    interestedSmallFrogImg = loadImage('assets/images/Petite grenouille interested.png');
+    singingBigFrogImg = loadImage('assets/images/Grosse grenouille Singing.png');
+    shySmallFrogImg = loadImage('assets/images/Petite grenouille Shy.png');
+    yikesBigFrogImg = loadImage('assets/images/Grosse grenouille Yikes.png');
+    sadSmallFrogImg = loadImage('assets/images/Petite grenouille Sad.png');
+    bigFrogImg = loadImage('assets/images/Grosse grenouille.png');
+    confidentSmallFrogImg = loadImage('assets/images/Petite grenouille Confident.png');
 }
+
+//Poem Lines for Cutscenes
+let lineOne = "In the night, \n the moon shines bright. \n \n   A singing bop, \n      makes you hop." ;
+let musicNotes = "♩ ♪ ♫ \n    ♪ ♩ ♫"
+let lineTwo = "And there she is, \n attracting with rizz. \n \n   Waiting for a mate, \n     to catch her bait.";
+let lineThree = "But once you do, \n  she takes one look at you, \n    and gives a review.\n \n    ˝Nah, I like em big, \n      come back when you're not shaped like a twig.‶ "
+let lineFour = "And just like that, \n your heart went pit pat! \n \n   But you refuse your size, \n    so you decide to eat flies."
 
 /**
  * Creates the canvas and initializes the fly
@@ -112,7 +145,7 @@ function draw() {
         cutsceneFour();
     }
     else if (state === "Gameplay") {
-        gameplay();
+        drawGameplay();
     }
     //if over 20 flies eaten then good ending
     else if (state === "Good Ending") { //or
@@ -130,12 +163,125 @@ function draw() {
  //Menu screen, click play 
 function showMenuScreen() {
     background("#87ceeb");
-    image(smallFrogImg, -20, 160, 300, 300,);
-    text("Frog Mates");
-    
+    image(smallFrogImg, 10, 100, 330, 390,);
+    //Game Title    
+    textSize(70);
+    fill(34, 177, 76);
+    text("Frog ♡ \n ♡ Mates", 300, 100,);
+
+    //Play Button 
+    textSize(55);
+    text("Play", 430, 370);
+   
+    if (mouseIsPressed && mouseX > 430 && mouseX < 540
+        && mouseY > 320 && mouseY < 370) {
+        state = "Part 1";
+      }
 }
 
-//Gameplay, where the frog lick da fly miam
+//Part 1 (Intro)
+function cutsceneOne() {
+   //Night
+   background(9, 62, 126);
+   image(interestedSmallFrogImg, 30, 150, 300, 330,);
+   //moon
+   noStroke();
+   fill("Khaki");
+   ellipse(80, 100, 100)
+   //Rhyme Intro, 
+   fill(34, 177, 76)
+   textSize(30);
+   text(lineOne, 300, 60,);
+   //Music Notes (the bop in question)
+   textSize(60);
+   fill(181, 230, 29);
+   text(musicNotes,380, 300,);
+   //Next Button
+   fill(34, 177, 76);
+   textSize(30);
+   text("Next", 565, 460);
+
+   if (mouseIsPressed && mouseX > 565 && mouseX < 630
+    && mouseY > 430 && mouseY < 460) {
+        state = "Part 2";
+        mouseIsPressed = false;
+    }
+}
+
+//Part two (Meeting big female frog)
+function cutsceneTwo() {
+     //Night
+   background(9, 62, 126);
+   //Female frog (They're bigger than males, go queen!}
+   image (shySmallFrogImg, 1, 250, 200, 230);
+   image(singingBigFrogImg, 290, 250, 200, 230,);
+   //Rhyme Intro, 
+   fill(34, 177, 76)
+   textSize(30);
+   text(lineTwo, 300, 60,);
+   //Music Notes (the bop in question)
+   textSize(60);
+   fill(181, 230, 29);
+   text(musicNotes, 80, 160);
+   //Next button
+   fill(34, 177, 76);
+   textSize(30);
+   text("Next", 565, 460);
+
+   if (mouseIsPressed && mouseX > 565 && mouseX < 630
+        && mouseY > 430 && mouseY < 460) {
+        state = "Part 3";
+        mouseIsPressed = false;
+    }
+}
+
+//Part 3 She rejects you :( 
+function cutsceneThree() {
+    //Night
+    background(9, 62, 126);
+    // She rejects him because he's not big enough
+    image (sadSmallFrogImg, 100, 250, 200, 230);
+    image(yikesBigFrogImg, 290, 250, 200, 230,);
+    //Rhyme Intro, 
+    fill(34, 177, 76)
+    textSize(26);
+    text(lineThree, 30, 60);
+    //Next button
+    fill(34, 177, 76);
+    textSize(30);
+    text("Next", 565, 460);
+
+   if (mouseIsPressed && mouseX > 565 && mouseX < 630
+        && mouseY > 430 && mouseY < 460) {
+        state = "Part 4";
+        mouseIsPressed = false;
+    }
+}
+
+//Part 4 You do not give up!!! 
+function cutsceneFour() {
+  //Night
+   background(9, 62, 126);
+   // She rejects him because he's not big enough
+   image (confidentSmallFrogImg, 100, 250, 200, 230);
+   image(bigFrogImg, 290, 250, 200, 230,);
+   //Rhyme Intro, 
+   fill(34, 177, 76)
+   textSize(26);
+   text(lineFour, 30, 60);
+   //Start gameplay button
+   fill(34, 177, 76);
+   textSize(30);
+   text("Start", 565, 460);
+   
+     if (mouseIsPressed && mouseX > 565 && mouseX < 630
+        && mouseY > 430 && mouseY < 460) {
+        state = "Gameplay";
+       mouseIsPressed = false;
+     }
+}
+
+//Gameplay, where the frog lick da fly, miam
 function drawGameplay() {
     background("#87ceeb");
     moveFly();
