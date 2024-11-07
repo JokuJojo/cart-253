@@ -67,12 +67,15 @@ const frog = {
 const fly = {
     x: 0,
     y: 200, // Will be random
-    size: 10,
-    speed: 5
+    size: 70,
+    speed: 7
 };
 
+//Frog noises in the night
+// let frogNightSounds;
+
 //Timer
-let timeDuration = 3;
+let timeDuration = 1;
 let timeStart;
 
 // State
@@ -82,6 +85,8 @@ let cutsceneTwoString = "Part 2";
 let cutsceneThreeString = "Part 3";
 let cutsceneFourString = "Part 4";
 let gameplayString = "Gameplay";
+let sexyEnding = "Good Ending";
+let badEnding = "Bed Ending";
 
 // Frog images for Cutscenes
 //Menu
@@ -99,10 +104,20 @@ let bigFrogImg;
 let confidentSmallFrogImg;
 let flySwirlImg;
 
+//good ending
+let fatSmallFrogImg;
+let loveBigFrogImg;
+
+//bad ending
+let deadBigFrogImg
+
 //fly
 let flyImg;
 
 function preload() {
+    //Sound
+    // frogNightSounds = loadSound('assets/sound/night-outdoor-ambience-frog-croak-57267.mp3');
+    //Images of frog
     smallFrogImg = loadImage('assets/images/Petite grenouille.png');
     interestedSmallFrogImg = loadImage('assets/images/Petite grenouille interested.png');
     singingBigFrogImg = loadImage('assets/images/Grosse grenouille Singing.png');
@@ -111,6 +126,10 @@ function preload() {
     sadSmallFrogImg = loadImage('assets/images/Petite grenouille Sad.png');
     bigFrogImg = loadImage('assets/images/Grosse grenouille.png');
     confidentSmallFrogImg = loadImage('assets/images/Petite grenouille Confident.png');
+    fatSmallFrogImg = loadImage('assets/images/Fat Petite Grenouille.png')
+    loveBigFrogImg = loadImage('assets/images/Love Grosse Grenouille.png')
+    deadBigFrogImg = loadImage('assets/images/Dead Grosse Grenouille.png')
+    //Images of Fly
     flySwirlImg = loadImage('assets/images/Fly Swirl.png')
     flyImg = loadImage('assets/images/Fly.png')
 }
@@ -121,7 +140,8 @@ let musicNotes = "♩ ♪ ♫ \n    ♪ ♩ ♫"
 let lineTwo = "And there she is, \n attracting with rizz. \n \n   Waiting for a mate, \n     to catch her bait.";
 let lineThree = "But once you do, \n  she takes one look at you, \n    and gives a review.\n \n    ˝Nah, I like em big, \n      come back when you're not shaped like a twig.‶ "
 let lineFour = "And just like that, \n your heart falls flat. \n \n   But you refuse your size, \n    so you decide to eat flies."
-
+let goodEndingLine = "She liked what she sees, \n  you did succeed. \n \n   In an eternity of bliss, \n     the story ends with a kiss. ♡ "
+let badEndingLine = "Unfortunately, \n  she found you too scrawny. \n \n  She pretends to be dead, \n    hoping you would've fled."
 /**
  * Creates the canvas and initializes the fly
 */
@@ -152,11 +172,11 @@ function draw() {
     }
     //if over 20 flies eaten then good ending (She accepts you)
     else if (state === "Good Ending") { //or
-        sexyEnding();
+        goodEnding();
     }
     //if under 20 flies eaten, then bad ending (She rejects you, pretend to play dead)
     else if (state === "Bad Ending") {
-        rejectionEnding();
+        badEnding();
     }
     else if (state === "Fin") {
         fin();
@@ -167,7 +187,8 @@ function draw() {
 function showMenuScreen() {
     background("#87ceeb");
     image(smallFrogImg, 10, 100, 330, 390,);
-    //Game Title    
+    //Game Title 
+    textFont("ariel");   
     textSize(70);
     fill(34, 177, 76);
     text("Frog ♡ \n ♡ Mates", 300, 100,);
@@ -179,8 +200,12 @@ function showMenuScreen() {
     if (mouseIsPressed && mouseX > 430 && mouseX < 540
         && mouseY > 320 && mouseY < 370) {
         state = "Part 1";
+        mouseIsPressed = false;
+        //night sound starts
+        // frogNightSounds.play();
       }
 }
+
 
 //Part 1 (Intro)
 function cutsceneOne() {
@@ -300,36 +325,60 @@ function drawGameplay() {
     drawTimer();
 }
 
-//Good ending, you got fat enough and now you get kiss!
-function sexyEnding() {
-      //Night
-   background(9, 62, 126);
-}
-
 //Timer display
 function drawTimer() {
     let timeElapsed = millis() - timeStart;
     timeElapsed = int(timeElapsed / 1000);
     let timeLeft = timeDuration - timeElapsed;
        
-    //Ending Scene
     if (timeLeft < 0) {
         textSize(65);
         textFont("Brush Script MT");
         fill("Hotpink");
         text("It's Sexy Time!", width / 4 - 20, height / 2);
-     if (mouseIsPressed) {
-        state = "Good Ending";
+     if (mouseIsPressed) { //If over 20 flies collected:
+        state = "Bad Ending";
          mouseIsPressed = false;
         }
+        //Or
+    // if (mouseIsPressed) { //If under 20 flies collected:
+    //         state = "Bad Ending";
+    //          mouseIsPressed = false;
+    //         }
+
     }  
     else {
         textSize(30);
         fill("white");
         text(timeLeft, 5, 30);
     }
-}
 
+}
+//Good ending, you got fat enough and now you get kiss!
+function goodEnding() {
+    //Night
+    background(255, 149, 153);
+    //Frogs in love
+    image (fatSmallFrogImg, 100, 250, 200, 230);
+    image(loveBigFrogImg, 290, 250, 200, 230,);
+    //Finishing line
+    fill("pink");
+    textSize(40);
+    text(goodEndingLine, 30, 50)
+}
+//Bad ending, yoe're not to her liking and she rejects you.
+function badEnding() {
+    //Night
+    background(59, 100, 155);
+    //Frogs in love
+    image (sadSmallFrogImg, 100, 250, 200, 230);
+    image(deadBigFrogImg, 290, 250, 200, 230,);
+    //Finishing line
+    textFont("ariel");
+    fill("white");
+    textSize(40);
+    text(badEndingLine, 30, 50);
+}
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
@@ -347,7 +396,7 @@ function moveFly() {
  * Draws the fly as a black circle
  */
 function drawFly() {
-    push();
+    push(0);
     image(flyImg, fly.x, fly.y, 40, 35);
     pop();
 
@@ -469,11 +518,12 @@ function checkTongueFlyOverlap() {
         // Reset the fly
         resetFly();
         // Frog gets fat
-        frog.body.size = frog.body.size +4;
+        frog.body.size = frog.body.size +5;
         // Bring back the tongue
         frog.tongue.state = "inbound";
     }
 }
+
 
 /**
  * Launch the tongue on click (if it's not launched yet)

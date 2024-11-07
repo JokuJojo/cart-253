@@ -10,8 +10,6 @@ Add frog croaking to female frog mating
 
 **Male frog progressively getting bigger with each fly caught**
 
-Timer is indicated also by change of colour in sky, from day to night
-
 flies get faster and harder to get
 
 Edit flies with wings
