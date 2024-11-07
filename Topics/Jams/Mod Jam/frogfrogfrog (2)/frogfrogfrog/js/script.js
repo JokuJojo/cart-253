@@ -72,7 +72,7 @@ const fly = {
 };
 
 //Timer
-let timeDuration = 30;
+let timeDuration = 3;
 let timeStart;
 
 // State
@@ -298,7 +298,14 @@ function drawGameplay() {
     checkTongueFlyOverlap(); 
     //Timer
     drawTimer();
-    
+}
+
+//Good ending, you got fat enough and now you kiss!
+function sexyEnding() {
+      //Night
+   background(9, 62, 126);
+
+
 }
 
 //Timer display
@@ -313,7 +320,13 @@ function drawTimer() {
         textFont("Brush Script MT");
         fill("Hotpink");
         text("It's Sexy Time!", width / 4 - 20, height / 2);
-    }
+     if (mouseIsPressed) {
+        state = "GoodEnding";
+         mouseIsPressed = false;
+        }
+     
+ 
+    }  
     else {
         textSize(30);
         fill("white");
