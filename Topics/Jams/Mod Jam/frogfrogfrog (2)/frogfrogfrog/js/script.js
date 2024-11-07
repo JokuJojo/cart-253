@@ -128,9 +128,6 @@ let lineFour = "And just like that, \n your heart falls flat. \n \n   But you re
 function setup() {
     createCanvas(640, 480);
     resetFly();
-    
-    // Timer 
-    timeStart = millis();   
 }
 
 function draw() {
@@ -153,11 +150,11 @@ function draw() {
     else if (state === "Gameplay") {
         drawGameplay();
     }
-    //if over 20 flies eaten then good ending
+    //if over 20 flies eaten then good ending (She accepts you)
     else if (state === "Good Ending") { //or
         sexyEnding();
     }
-    //if under 20 flies eaten, then bad ending
+    //if under 20 flies eaten, then bad ending (She rejects you, pretend to play dead)
     else if (state === "Bad Ending") {
         rejectionEnding();
     }
@@ -284,7 +281,9 @@ function cutsceneFour() {
      if (mouseIsPressed && mouseX > 565 && mouseX < 630
         && mouseY > 430 && mouseY < 460) {
         state = "Gameplay";
-       mouseIsPressed = false;
+        mouseIsPressed = false;
+        //Start timer
+        timeStart = millis();
      }
 }
 
@@ -299,6 +298,7 @@ function drawGameplay() {
     checkTongueFlyOverlap(); 
     //Timer
     drawTimer();
+    
 }
 
 //Timer display
@@ -306,7 +306,7 @@ function drawTimer() {
     let timeElapsed = millis() - timeStart;
     timeElapsed = int(timeElapsed / 1000);
     let timeLeft = timeDuration - timeElapsed;
-
+       
     //Ending Scene
     if (timeLeft < 0) {
         textSize(65);
@@ -339,7 +339,7 @@ function moveFly() {
  */
 function drawFly() {
     push();
-    image(flyImg, fly.x, fly.y, 40, 40);
+    image(flyImg, fly.x, fly.y, 40, 35);
     pop();
 
 }

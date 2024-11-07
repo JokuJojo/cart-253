@@ -17,3 +17,4 @@ Female frogs scream in the night to attract a mate, which they are very picky an
 
 When the reject a male, they usually pretend to be dead as they wait for the male to realize and lose interest. (Or, and this is real, they've realized the male frogs will pretty much hump anything so they'll trick them into humping a rock or even another male frog, which that humped male frog will do a deep croak to signal "Hey dude you're barking at the wrong tree" which the females then started also using that same deep croak to trick the male frogs into thinking they're humping a male. Not in the game, just a fun fact.)
 
+
