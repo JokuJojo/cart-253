@@ -10,12 +10,19 @@ The initial idea:
 
 The experience:
 
-> The user controls a frog at the bottom of the screen, they can shoot out the frog's tongue and catch a fly which is moving on the screen. If the tongue hits the fly it gets eaten.
+> The user will click throughout cut scene with rhymes as motivation to eat flies and get fatter in the process. The user controls a frog at the bottom of the screen, they can shoot out the frog's tongue and catch a fly which is moving on the screen. If the tongue hits the fly it gets eaten.
 
 ## Breaking it down
 
 Basic things to do:
 
+- Have default frog created in Paint to use as a png
+- Add eyes to the eating frog
+- frog getting bigger by each fly
+- 30 second timer to eat minimum 20 flies
+- Add sound of croaking frogs
+- Add more movement to the flies
+- two ending scenes
 - Draw the frog (image? a circle?)
 - Draw the tongue...
 - Move the frog (how? mouse? keyboard? breathing?)
@@ -42,6 +49,7 @@ Questions:
 
 What is there?
 
+- Cutcenes include 2 endings
 - The frog
     - Position and size
     - Position and size of tongue

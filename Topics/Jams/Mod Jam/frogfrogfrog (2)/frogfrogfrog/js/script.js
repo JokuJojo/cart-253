@@ -76,7 +76,7 @@ let timeDuration = 30;
 let timeStart;
 
 // State
-let state = "Part 4"; 
+let state = "Menu screen"; 
 let cutsceneOneString = "Part 1";
 let cutsceneTwoString = "Part 2";
 let cutsceneThreeString = "Part 3";
@@ -97,6 +97,10 @@ let sadSmallFrogImg;
 //Cutscene 4
 let bigFrogImg;
 let confidentSmallFrogImg;
+let flySwirlImg;
+
+//fly
+let flyImg;
 
 function preload() {
     smallFrogImg = loadImage('assets/images/Petite grenouille.png');
@@ -107,6 +111,8 @@ function preload() {
     sadSmallFrogImg = loadImage('assets/images/Petite grenouille Sad.png');
     bigFrogImg = loadImage('assets/images/Grosse grenouille.png');
     confidentSmallFrogImg = loadImage('assets/images/Petite grenouille Confident.png');
+    flySwirlImg = loadImage('assets/images/Fly Swirl.png')
+    flyImg = loadImage('assets/images/Fly.png')
 }
 
 //Poem Lines for Cutscenes
@@ -114,7 +120,7 @@ let lineOne = "In the night, \n the moon shines bright. \n \n   A singing bop, \
 let musicNotes = "♩ ♪ ♫ \n    ♪ ♩ ♫"
 let lineTwo = "And there she is, \n attracting with rizz. \n \n   Waiting for a mate, \n     to catch her bait.";
 let lineThree = "But once you do, \n  she takes one look at you, \n    and gives a review.\n \n    ˝Nah, I like em big, \n      come back when you're not shaped like a twig.‶ "
-let lineFour = "And just like that, \n your heart went pit pat! \n \n   But you refuse your size, \n    so you decide to eat flies."
+let lineFour = "And just like that, \n your heart falls flat. \n \n   But you refuse your size, \n    so you decide to eat flies."
 
 /**
  * Creates the canvas and initializes the fly
@@ -265,9 +271,10 @@ function cutsceneFour() {
    // She rejects him because he's not big enough
    image (confidentSmallFrogImg, 100, 250, 200, 230);
    image(bigFrogImg, 290, 250, 200, 230,);
+   image(flySwirlImg, 470, 1, 200, 200);
    //Rhyme Intro, 
    fill(34, 177, 76)
-   textSize(26);
+   textSize(30);
    text(lineFour, 30, 60);
    //Start gameplay button
    fill(34, 177, 76);
@@ -332,24 +339,8 @@ function moveFly() {
  */
 function drawFly() {
     push();
-    noStroke();
-    fill("#000000");
-    ellipse(fly.x, fly.y, fly.size);
+    image(flyImg, fly.x, fly.y, 40, 40);
     pop();
-
-// //wing Left
-// push();
-// noStroke();
-// fill("white");
-// ellipse(wingL.x, wingL.y, wingL.size);
-// pop();
-
-// //wing Right
-// push();
-// noStroke();
-// fill("white");
-// ellipse(wingR.x, wingR.y, wingR.size);
-// pop();
 
 }
 

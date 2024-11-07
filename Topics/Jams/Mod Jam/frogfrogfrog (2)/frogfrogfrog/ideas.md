@@ -2,13 +2,13 @@
 
 **Frog eating flies but it gets harder and harder to catch them**
  
-Fun frog facts about their mating rituals
+**Storyboard of frog mating**
 
 Tongue used to click in menu screen
 
 Add frog croaking to female frog mating
 
-Male frog progressively getting bigger with each fly caught
+**Male frog progressively getting bigger with each fly caught**
 
 Timer is indicated also by change of colour in sky, from day to night
 
