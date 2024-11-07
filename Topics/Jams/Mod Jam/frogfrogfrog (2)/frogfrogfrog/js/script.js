@@ -300,12 +300,10 @@ function drawGameplay() {
     drawTimer();
 }
 
-//Good ending, you got fat enough and now you kiss!
+//Good ending, you got fat enough and now you get kiss!
 function sexyEnding() {
       //Night
    background(9, 62, 126);
-
-
 }
 
 //Timer display
@@ -321,11 +319,9 @@ function drawTimer() {
         fill("Hotpink");
         text("It's Sexy Time!", width / 4 - 20, height / 2);
      if (mouseIsPressed) {
-        state = "GoodEnding";
+        state = "Good Ending";
          mouseIsPressed = false;
         }
-     
- 
     }  
     else {
         textSize(30);
