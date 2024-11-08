@@ -4,7 +4,7 @@ Jorane Milot
 
 A silly game inspired by the mating cycle of frogs.
 
-[Play it!]()
+[Play it!](https://jokujojo.github.io/cart-253/)
 
 - [Ideas](./ideas.md)
 - [Planning](./planning.md)
