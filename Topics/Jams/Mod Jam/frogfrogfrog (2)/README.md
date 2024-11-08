@@ -4,7 +4,7 @@ Jorane Milot
 
 A silly game inspired by the mating cycle of frogs.
 
-[Play it!](https://pippinbarr.github.io/cart253-examples/topics/making/frogfrogfrog/index.html)
+[Play it!]()
 
 - [Ideas](./ideas.md)
 - [Planning](./planning.md)
