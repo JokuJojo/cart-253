@@ -67,15 +67,16 @@ const frog = {
 const fly = {
     x: 0,
     y: 200, // Will be random
-    size: 70,
+    yStart: 0,
+    size: 40,
     speed: 7
 };
 
 //Frog noises in the night
-// let frogNightSounds;
+let frogNightSounds;
 
 //Timer
-let timeDuration = 1;
+let timeDuration = 30;
 let timeStart;
 
 // State
@@ -85,8 +86,8 @@ let cutsceneTwoString = "Part 2";
 let cutsceneThreeString = "Part 3";
 let cutsceneFourString = "Part 4";
 let gameplayString = "Gameplay";
-let sexyEnding = "Good Ending";
-let badEnding = "Bed Ending";
+// let sexyEnding = "Good Ending";
+// let badEnding = "Bad Ending";
 
 // Frog images for Cutscenes
 //Menu
@@ -113,10 +114,11 @@ let deadBigFrogImg
 
 //fly
 let flyImg;
+let fliesEaten = 0;
 
 function preload() {
     //Sound
-    // frogNightSounds = loadSound('assets/sound/night-outdoor-ambience-frog-croak-57267.mp3');
+    frogNightSounds = loadSound('assets/sounds/night-outdoor-ambience-frog-croak-57267.mp3');
     //Images of frog
     smallFrogImg = loadImage('assets/images/Petite grenouille.png');
     interestedSmallFrogImg = loadImage('assets/images/Petite grenouille interested.png');
@@ -202,7 +204,7 @@ function showMenuScreen() {
         state = "Part 1";
         mouseIsPressed = false;
         //night sound starts
-        // frogNightSounds.play();
+        frogNightSounds.play();
       }
 }
 
@@ -307,6 +309,8 @@ function cutsceneFour() {
         && mouseY > 430 && mouseY < 460) {
         state = "Gameplay";
         mouseIsPressed = false;
+        //stop sound
+        frogNightSounds.stop();
         //Start timer
         timeStart = millis();
      }
@@ -336,15 +340,13 @@ function drawTimer() {
         textFont("Brush Script MT");
         fill("Hotpink");
         text("It's Sexy Time!", width / 4 - 20, height / 2);
-     if (mouseIsPressed) { //If over 20 flies collected:
-        state = "Bad Ending";
-         mouseIsPressed = false;
+        
+        if (mouseIsPressed && fliesEaten >= 20) { //If over 20 flies collected:
+            state = "Good Ending";
         }
-        //Or
-    // if (mouseIsPressed) { //If under 20 flies collected:
-    //         state = "Bad Ending";
-    //          mouseIsPressed = false;
-    //         }
+        else if (mouseIsPressed && fliesEaten < 20) { //If under 20 flies collected:
+            state = "Bad Ending";
+        }
 
     }  
     else {
@@ -363,7 +365,7 @@ function goodEnding() {
     image(loveBigFrogImg, 290, 250, 200, 230,);
     //Finishing line
     fill("pink");
-    textSize(40);
+    textSize(35);
     text(goodEndingLine, 30, 50)
 }
 //Bad ending, yoe're not to her liking and she rejects you.
@@ -374,18 +376,19 @@ function badEnding() {
     image (sadSmallFrogImg, 100, 250, 200, 230);
     image(deadBigFrogImg, 290, 250, 200, 230,);
     //Finishing line
-    textFont("ariel");
+    textFont("arial");
     fill("white");
-    textSize(40);
+    textSize(35);
     text(badEndingLine, 30, 50);
 }
 /**
  * Moves the fly according to its speed
  * Resets the fly if it gets all the way to the right
  */
-function moveFly() {
+function moveFly() { 
     // Move the fly
     fly.x += fly.speed;
+    fly.y = fly.yStart + 30 * sin(0.016*fly.x);
     // Handle the fly going off the canvas
     if (fly.x > width) {
         resetFly();
@@ -396,10 +399,9 @@ function moveFly() {
  * Draws the fly as a black circle
  */
 function drawFly() {
-    push(0);
-    image(flyImg, fly.x, fly.y, 40, 35);
+    push();
+    image(flyImg, fly.x - 40 / 2, fly.y - 35 / 2, 40, 35);
     pop();
-
 }
 
 /**
@@ -407,7 +409,8 @@ function drawFly() {
  */
 function resetFly() {
     fly.x = 0;
-    fly.y = random(0, 300);
+    fly.yStart = random(0, 300);
+    fly.y = fly.yStart;
 }
 
 /**
@@ -515,6 +518,7 @@ function checkTongueFlyOverlap() {
     // Check if it's an overlap
     const eaten = (d < frog.tongue.size/2 + fly.size/2);
     if (eaten) {
+        fliesEaten = fliesEaten + 1;
         // Reset the fly
         resetFly();
         // Frog gets fat
