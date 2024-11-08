@@ -14,9 +14,10 @@ A silly game inspired by the mating cycle of frogs.
 Includes:
 - Frog gets fatter every fly eaten
 - 2 Ending scenes
-- A love Interest and Story
+- A love Interest and a Story
 - Countdown
-- Sound
+- More fly movement
+- Sound/music
 
 The goal isn't to be be an educative game, but more of a fun 
 rhyme with some slight brainrot/meme language. 
